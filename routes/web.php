@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,9 +14,7 @@ Route::get('/', function () {
     return redirect()->route('workspace');
 });
 
-Route::get('/workspace', function () {
-    return view('workspace');
-})->middleware(['auth', 'verified'])->name('workspace');
+Route::get('/workspace', [WorkspaceController::class, 'index'])->middleware(['auth', 'verified'])->name('workspace');
 
 Route::resource('tasks', TaskController::class)->middleware(['auth'])->except(['index']);
 
