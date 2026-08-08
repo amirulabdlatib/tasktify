@@ -192,6 +192,10 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="mt-4">
+                        {{ $tasks->links() }}
+                    </div>
                 </div>
             </div>
 

@@ -20,7 +20,7 @@ class WorkspaceController extends Controller
                 'due_at',
                 'completed_at',
             ])
-            ->get();
+            ->paginate(20);
 
         $total_task_count = $tasks->count();
 
