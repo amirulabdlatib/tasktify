@@ -6,10 +6,14 @@ use App\Enums\TaskStatusEnum;
 use App\Http\Requests\CreateTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+
+    use AuthorizesRequests;
+
     public function create()
     {
         return view('tasks.create');
@@ -27,11 +31,15 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
+        $this->authorize('view', $task);
+
         return view('tasks.edit', compact('task'));
     }
 
     public function update(UpdateTaskRequest $request, Task $task)
     {
+        $this->authorize('update', $task);
+
         $data = $request->validated();
 
         $data['completed_at'] = $data['status'] === TaskStatusEnum::COMPLETED->value
@@ -47,6 +55,8 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
+        $this->authorize('delete', $task);
+
         $task->delete();
 
         return redirect()
