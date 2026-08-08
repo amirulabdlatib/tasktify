@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTaskRequest;
 use App\Models\Task;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -22,5 +21,19 @@ class TaskController extends Controller
         ]);
 
         return redirect()->route('workspace')->with('status', 'Task created successfully.');
+    }
+
+    public function edit(Task $task)
+    {
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return redirect()
+            ->route('workspace')
+            ->with('status', 'Task deleted successfully');
     }
 }
