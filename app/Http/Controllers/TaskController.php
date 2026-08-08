@@ -21,6 +21,6 @@ class TaskController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('workspace');
+        return redirect()->route('workspace')->with('status', 'Task created successfully.');
     }
 }

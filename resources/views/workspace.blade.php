@@ -8,6 +8,21 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
+            @if (session('status'))
+                <div x-data="{ show: true }" x-show="show" x-transition
+                    class="flex items-center justify-between gap-4 bg-green-50 border border-green-200 text-green-700 text-sm font-medium rounded-md px-4 py-3">
+                    <span>{{ session('status') }}</span>
+
+                    <button type="button" @click="show = false"
+                        class="text-green-500 hover:text-green-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
+
             {{-- Stat Cards --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {{-- Total Tasks --}}
