@@ -89,8 +89,28 @@
             {{-- Tasks Table --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-gray-800">{{ __('Recent Tasks') }}</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <h3 class="text-lg font-semibold text-gray-800">{{ __('Recent Tasks') }}</h3>
+                            <form action="{{ route('workspace') }}" method="GET" class="flex items-center gap-2">
+                                <div class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
+                                    <input type="text" name="search" value="{{ $search }}"
+                                        placeholder="{{ __('Search tasks...') }}"
+                                        class="w-full sm:w-64 pl-9 pr-3 py-2 text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+                                </div>
+
+                                <button type="submit"
+                                    class="px-4 py-2 bg-gray-100 border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition">
+                                    {{ __('Search') }}
+                                </button>
+                            </form>
+                        </div>
 
                         <a href="{{ route('tasks.create') }}"
                             class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition">
@@ -157,8 +177,9 @@
                                                 <a href="{{ route('tasks.edit', $task) }}"
                                                     class="p-1.5 text-gray-500 hover:text-indigo-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                                     title="{{ __('Edit') }}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+                                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                        stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                     </svg>
@@ -185,7 +206,9 @@
                                 @empty
                                     <tr>
                                         <td colspan="5" class="px-4 py-6 text-sm text-center text-gray-500">
-                                            {{ __('No tasks yet. Create your first task to get started.') }}
+                                            {{ $search
+                                                ? __('No tasks found matching ":search".', ['search' => $search])
+                                                : __('No tasks yet. Create your first task to get started.') }}
                                         </td>
                                     </tr>
                                 @endforelse
