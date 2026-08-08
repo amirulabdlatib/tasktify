@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,8 @@ Route::get('/', function () {
 Route::get('/workspace', function () {
     return view('workspace');
 })->middleware(['auth', 'verified'])->name('workspace');
+
+Route::resource('tasks', TaskController::class)->middleware(['auth'])->except(['index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
