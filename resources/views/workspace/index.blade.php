@@ -36,7 +36,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">{{ __('Total Tasks') }}</p>
-                        <p class="text-2xl font-semibold text-gray-900">24</p>
+                        <p class="text-2xl font-semibold text-gray-900">{{ $total_task_count }}</p>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">{{ __('Completed') }}</p>
-                        <p class="text-2xl font-semibold text-gray-900">14</p>
+                        <p class="text-2xl font-semibold text-gray-900">{{ $completed_task_count }}</p>
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">{{ __('Pending') }}</p>
-                        <p class="text-2xl font-semibold text-gray-900">7</p>
+                        <p class="text-2xl font-semibold text-gray-900">{{ $pending_task_count }}</p>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">{{ __('Overdue') }}</p>
-                        <p class="text-2xl font-semibold text-gray-900">3</p>
+                        <p class="text-2xl font-semibold text-gray-900">{{ $overdue_task_count }}</p>
                     </div>
                 </div>
             </div>
@@ -122,80 +122,42 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Design landing page
-                                        mockup</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{{ __('Completed') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">Aug 02, 2026</td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">6 days ago</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Set up database
-                                        migrations</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{{ __('Completed') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">Aug 04, 2026</td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">5 minutes ago</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Implement
-                                        authentication flow</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ __('Pending') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">Aug 10, 2026 &middot;
-                                        2 days remaining</td>
-                                    <td class="px-4 py-3 text-sm text-gray-400 whitespace-nowrap">&mdash;</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Write API
-                                        documentation</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ __('Pending') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">Aug 12, 2026 &middot;
-                                        4 days remaining</td>
-                                    <td class="px-4 py-3 text-sm text-gray-400 whitespace-nowrap">&mdash;</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Fix responsive layout
-                                        bugs</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">{{ __('Overdue') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-red-600 whitespace-nowrap">Aug 05, 2026 &middot;
-                                        3 days overdue</td>
-                                    <td class="px-4 py-3 text-sm text-gray-400 whitespace-nowrap">&mdash;</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Prepare client
-                                        presentation</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">{{ __('Overdue') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-red-600 whitespace-nowrap">Aug 06, 2026 &middot;
-                                        2 days overdue</td>
-                                    <td class="px-4 py-3 text-sm text-gray-400 whitespace-nowrap">&mdash;</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">Plan Q3 roadmap</td>
-                                    <td class="px-4 py-3 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ __('Pending') }}</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">Aug 20, 2026 &middot;
-                                        12 days remaining</td>
-                                    <td class="px-4 py-3 text-sm text-gray-400 whitespace-nowrap">&mdash;</td>
-                                </tr>
+                                @forelse ($tasks as $task)
+                                    @php
+                                        $isCompleted = $task->status === \App\Enums\TaskStatusEnum::COMPLETED;
+                                        $isOverdue = !$isCompleted && $task->due_at->isPast();
+                                    @endphp
+                                    <tr>
+                                        <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                                            {{ $task->name }}</td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            @if ($isCompleted)
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{{ __('Completed') }}</span>
+                                            @elseif ($isOverdue)
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">{{ __('Overdue') }}</span>
+                                            @else
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ __('Pending') }}</span>
+                                            @endif
+                                        </td>
+                                        <td
+                                            class="px-4 py-3 text-sm whitespace-nowrap {{ $isOverdue ? 'text-red-600' : 'text-gray-500' }}">
+                                            {{ $task->due_at->format('M d, Y') }} &middot;
+                                            {{ $isOverdue ? $task->due_at->diffForHumans(null, true) . ' overdue' : $task->due_at->diffForHumans(null, true) . ' remaining' }}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">
+                                            {{ $task->completed_at ? $task->completed_at->diffForHumans() : '—' }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="px-4 py-6 text-sm text-center text-gray-500">
+                                            {{ __('No tasks yet. Create your first task to get started.') }}
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
