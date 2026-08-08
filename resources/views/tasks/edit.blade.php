@@ -49,7 +49,7 @@
                         <div class="mt-4">
                             <x-input-label for="due_at" :value="__('Due Date')" />
                             <x-text-input id="due_at" class="block mt-1 w-full" type="datetime-local" name="due_at"
-                                :value="old('due_at', optional($task->due_at)->format('Y-m-d\TH:i'))" />
+                                :value="old('due_at', $task->due_at->format('Y-m-d\TH:i'))" min="{{ now()->format('Y-m-d\TH:i') }}" />
                             <x-input-error :messages="$errors->get('due_at')" class="mt-2" />
                         </div>
 
