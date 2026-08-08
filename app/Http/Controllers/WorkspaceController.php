@@ -20,7 +20,7 @@ class WorkspaceController extends Controller
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        $tasks = $query->latest()
+        $tasks = $query->oldest('due_at')
             ->select([
                 'id',
                 'name',
@@ -28,7 +28,7 @@ class WorkspaceController extends Controller
                 'due_at',
                 'completed_at',
             ])
-            ->paginate(2)
+            ->paginate(20)
             ->withQueryString();
 
         $baseQuery = Task::where('user_id', Auth::id());

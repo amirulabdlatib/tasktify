@@ -89,10 +89,13 @@
             {{-- Tasks Table --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div class="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
                             <h3 class="text-lg font-semibold text-gray-800">{{ __('Recent Tasks') }}</h3>
-                            <form action="{{ route('workspace') }}" method="GET" class="flex items-center gap-2">
+
+                            {{-- Search (desktop: inline next to title) --}}
+                            <form action="{{ route('workspace') }}" method="GET"
+                                class="hidden sm:flex items-center gap-2">
                                 <div class="relative">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400"
@@ -102,7 +105,7 @@
                                     </svg>
                                     <input type="text" name="search" value="{{ $search }}"
                                         placeholder="{{ __('Search tasks...') }}"
-                                        class="w-full sm:w-64 pl-9 pr-3 py-2 text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+                                        class="w-64 pl-9 pr-3 py-2 text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
                                 </div>
 
                                 <button type="submit"
@@ -113,13 +116,34 @@
                         </div>
 
                         <a href="{{ route('tasks.create') }}"
-                            class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition">
+                            class="order-2 inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                                 stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                             {{ __('Task') }}
                         </a>
+
+                        {{-- Search (mobile: full width on its own row) --}}
+                        <form action="{{ route('workspace') }}" method="GET"
+                            class="order-3 flex sm:hidden items-center gap-2 w-full">
+                            <div class="relative flex-1">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400"
+                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                </svg>
+                                <input type="text" name="search" value="{{ $search }}"
+                                    placeholder="{{ __('Search tasks...') }}"
+                                    class="w-full pl-9 pr-3 py-2 text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+                            </div>
+
+                            <button type="submit"
+                                class="px-4 py-2 bg-gray-100 border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition">
+                                {{ __('Search') }}
+                            </button>
+                        </form>
                     </div>
 
                     <div class="overflow-x-auto">
